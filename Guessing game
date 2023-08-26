@@ -1,0 +1,37 @@
+#Guessing Game
+
+
+import random
+i_number = random.randint(1,10)
+
+print("I'm thinking of a number between 1 and 10. You have 3 guesses.")
+i_guess = int(input("Guess a number between 1 and 10: "))
+i_count = 1
+
+
+while i_guess != i_number and i_count != 4:
+    if i_guess > i_number:
+        print("Your guess is too high")
+        i_guess = int(input("Guess a number between 1 and 10: "))
+        i_count = i_count + 1
+
+    elif i_guess < i_number:
+        print ("Your guess is too low")
+        i_guess = int(input("Guess a number between 1 and 10: "))
+        i_count = i_count + 1
+
+    if i_count == 3:
+        if i_guess > i_number:
+            print("Your guess is too high")
+            print ("Sorry, you didn't guess the number. The number was ", i_number)
+            i_count = i_count + 1
+
+        elif i_guess < i_number:
+            print ("Your guess is too low")
+            print ("Sorry, you didn't guess the number. The number was ", i_number)
+            i_count = i_count + 1
+
+        
+if i_guess == i_number:
+    print("You guessed correctly")
+
