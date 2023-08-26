@@ -1,0 +1,54 @@
+#Arithmetic Tutor
+
+# loading random numbers through import random
+# ask the user if they want to practice the Arithmetic
+# Stop when the user enters either "n" or "N"
+# begin practicing the Arithmetic when the user enter either "y" or "Y"
+# generate problems until the user enters “n” or “N”
+
+import random
+
+print("Welcome to the Arithmetic Tutor")
+s_replay = input("Do you want to practice arithmetic? (Y/n) ")
+
+while s_replay != "n" and s_replay != "N":
+    if s_replay == "y" or s_replay == "Y":
+        second_num = random.randrange(101)
+        first_num = random.randrange(second_num,102)
+    
+        l_list = ["+", "-", "*"] #options 
+        s_index = l_list[random.randrange(len(l_list))] #randomoption
+    
+        if s_index == "+":
+            i_expected = first_num + second_num
+        elif s_index == "-":
+            i_expected = first_num - second_num
+        else:
+            i_expected = first_num * second_num
+
+        # Generating an expression message to take user input
+        s_exp = str(first_num) + s_index + str(second_num) + " = " # " 91 * 97 = "
+        i_prediction = int(input(s_exp))
+        
+        # initializing accumulator
+        # get three checks by displaying the correct answer in third attempt
+        # indicate the answer is correct when the user inputs correct answer in first or second attempt
+        # Again ask the user if they want to continue practicing the Arithmetic
+        i_count = 0
+        while i_prediction != i_expected and i_count < 3:
+            if i_count == 2:
+                print("Sorry, that's incorrect. The correct answer is", i_expected, ".")
+            else:
+                print("Sorry, that's incorrect.")
+                i_prediction = int(input(s_exp)) 
+            i_count += 1
+                
+        if i_prediction == i_expected:
+            print("Correct!")
+            
+        s_replay = input("Continue practicing? (Y/n) ")
+    else:
+        s_replay = input("Continue practicing? (Y/n) ")
+
+# Exit when the user enters "n" or "N"
+print("Exiting.. Bye!")
