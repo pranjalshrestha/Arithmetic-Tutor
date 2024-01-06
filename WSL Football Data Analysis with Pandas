@@ -6,25 +6,25 @@ Pandas Project
 import pandas as pd
 
 
-# 1
+# Load the data from that file into the DataFrame named Q1.
 Q1 = pd.read_csv('wsl_2022-2023.csv')
 print(Q1.to_string())
 print("\n=======\n")
 
 
-# 2 
+# Print the total number of Goals from the dataset.  
 num_goals = Q1["Goals"].sum()
 print("The total number of Goals is:", num_goals)
 print("\n=======\n")
 
 
-# 3
+# Print out the total number of goals for each team
 new_Q1 = Q1.groupby('Team')['Goals'].sum()
 print(new_Q1)
 print("\n=======\n")
 
 
-# 4
+# Make a copy of Q1 called Q4. Drop any rows from Q4 that are missing data in at least 1 column.
 Q4 = Q1.copy()
 Q4 = Q4.dropna()
 print(Q4.to_string())
@@ -33,7 +33,7 @@ print("The total number of Goals is:", num_goals1)
 print("\n=======\n")
 
 
-# 5
+# Make a copy of Q4 called Q5.  Drop any duplicate rows from Q5, leaving only 1 copy of each duplicated row.  
 Q5 = Q4.copy()
 Q5 = Q5.drop_duplicates()
 print(Q5.to_string())
@@ -42,72 +42,67 @@ print("The total number of Goals is:", num_goals2)
 print("\n=======\n")
 
 
-# 6
+# Print the statistical summary of Q5, such that you see rows for count, mean, std, min, 25%, 50%, 75%, and max for each column
 stats_summary = Q5.describe()
 print(stats_summary.to_string())
 print("\n=======\n")
 
 
-# 7
+# Write code that finds the indexes for the Player Bethany England in Q5 and prints those indexes out.
 bethany_indexes = Q5[Q5['Player'] == 'Bethany England'].index
 print(bethany_indexes)
 print("\n=======\n")
 
 
-# 8
-#It means there is only one row left with Bethany England after removing duplicates.
-#The remaining rows with the player 'Bethany England' are unique, and there are no duplicate entries for this player.
-
-
-# 9
+# The index values that are just integers are not really pleasant for finding information about a given player. Make a copy of Q5 called Q9 where the index of Q9 is the Player column.
 Q9 = Q5.copy()
 Q9 = Q9.set_index('Player')
 print(Q9.to_string())
 print("\n=======\n")
 
 
-# 10
+# code to print the row data in Q9 about Megan Finnigan.
 print(Q9.loc['Megan Finnigan'])
 print("\n=======\n")
 
 
-# 11
+# the number of Goals for Rachel Daly from Q9
 goals_rachel = Q9.loc['Rachel Daly', 'Goals']
 print("The number of Goals for Rachel Daly is:", goals_rachel)
 print("\n=======\n")
 
 
-# 12
+# Let’s find the people with discipline problems.  Add a new column to Q9 called Discipline which = (4 * Red) + (1 * Yellow)
 Q9['Discipline'] = 4 * (Q9['Red']) + 1 * (Q9['Yellow'])
 print(Q9.to_string())
 
 
-# 13
+# Make a new DataFrame called Q13 which is a slice of Q9 that contains only the columns Player, Team, and Discipline. 
 Q13 = Q9[['Team', 'Discipline']]
 print(Q13)
 print("\n=======\n")
 
 
-# 14
+# Create a new DataFrame Q14 with the content of Q13, but sorted by Discipline and Player with Discipline from highest to lowest and Player from first alphabetically to last.
 Q14 = Q13.sort_values(by=['Discipline', 'Player'], ascending=[False, True])
 print(Q14.to_string())
 print("\n=======\n")
 
 
-# 15
+# See which teams have the biggest discipline issues. For each team, show the sum of the Discipline column
 Q15 = Q14.groupby('Team')['Discipline'].sum()
 print(Q15)
 print("\n=======\n")
 
 
-# 16
+# Make a new DataFrame called Q16 that only has players with a Discipline value > 0.
 Q16 = Q14[Q14['Discipline'] > 0]
 Q16 = Q16.sort_values(by=['Team', 'Discipline'], ascending=[True, False])
 print(Q16.to_string())
 print("\n=======\n")
 
 
-# 17
+# Create a new DataFrame named Q17 that contains the following data and uses the Player as the index:
 data = {'Player': ['Beth Mead', 'Hayley Raso', 'Guro Reiten'],
         "Team": ['arsenal', 'everton', 'chelsea'],
         "Discipline": [6, None, 2]}
@@ -117,20 +112,20 @@ print(Q17)
 print("\n=======\n")
 
  
-# 18
+# Use fillna to replace the missing value in Q17’s Discipline with the average of Q17’s Discipline values.
 avg = Q17['Discipline'].mean()
 Q17['Discipline'] = Q17['Discipline'].fillna(avg)
 print(Q17)
 print("\n=======\n")
 
 
-# 19
+# Make a new DataFrame named Q19 which is a result of combining Q16 with Q17.
 Q19 = pd.concat([Q16, Q17])
 print(Q19.to_string())
 print("\n=======\n")
 
 
-# 20
+# Use map and a function you write called fix_team_name to make that change to Q19
 def fix_name_format(name):
     return name.title()
 
