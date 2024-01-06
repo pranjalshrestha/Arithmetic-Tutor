@@ -6,7 +6,7 @@ Pandas Project
 import pandas as pd
 
 
-# Load the data from that file into the DataFrame named Q1.
+# Load the data from the file into the DataFrame named Q1.
 Q1 = pd.read_csv('wsl_2022-2023.csv')
 print(Q1.to_string())
 print("\n=======\n")
