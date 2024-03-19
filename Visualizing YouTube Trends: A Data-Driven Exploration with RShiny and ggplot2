@@ -7,7 +7,7 @@ library(readxl)
 library(forcats)
 library(scales)
 
-#Create a dashboard to showing stats of some of the top YouTube videos over the years.
+#Create a dashboard showing stats of some of the top YouTube videos over the years.
 data = read_csv('videos-stats.csv')
 vids = subset(data, Year == 2022)
 beast = read_excel('MrBeast_Average_Views.xlsx')
